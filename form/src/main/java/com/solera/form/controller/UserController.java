@@ -37,4 +37,9 @@ public class UserController {
         return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);
     }
 
+    @PutMapping("/update/{id}")
+    public ResponseEntity<String> update(@PathVariable String id, @RequestBody User user) {
+        return null;
+    }
+
 }

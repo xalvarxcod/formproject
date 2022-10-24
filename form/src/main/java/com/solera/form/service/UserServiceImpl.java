@@ -26,4 +26,16 @@ public class UserServiceImpl implements UserService {
     public Optional<User> getUser(String id){
         return userRepository.findById(id);
     }
+    public Optional<User> updateUser(User user) {
+        Integer userId = user.getId();
+        Optional<User> userOptional = userRepository.findById(userId);
+        if(userOptional.isEmpty())
+            return Optional.empty();
+
+        User userFound = userOptional.get();
+        userFound.setAnswers(userFound.getAnswers());
+        userFound.setPassword(userFound.getPassword());
+        userFound.setUsername(userFound.getUsername());
+        return Optional.of(userFound);
+    }
 }
