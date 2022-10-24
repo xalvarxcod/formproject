@@ -20,7 +20,7 @@ public class AnswerController {
     public ResponseEntity<String> add(@RequestBody Answer answer){
         System.out.println("Answer " + answer.toString());
         answerService.saveAnswer(answer);
-        return ResponseEntity.status(HttpStatus.OK).body("Question:" + answer.getAnswer() +" added");
+        return ResponseEntity.status(HttpStatus.OK).body("Answer: " + answer.getAnswer() +" added");
     }
 
     @GetMapping("/getAll")

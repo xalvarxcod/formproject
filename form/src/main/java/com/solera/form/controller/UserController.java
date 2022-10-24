@@ -21,7 +21,7 @@ public class UserController {
     @PostMapping("/add")
     public ResponseEntity<String> add(@RequestBody User user){
         userService.saveUser(user);
-        return ResponseEntity.status(HttpStatus.OK).body("User:" + user.getUsername() +" added");
+        return ResponseEntity.status(HttpStatus.OK).body("User: " + user.getUsername() +" added");
     }
 
     @GetMapping("/getAll")
