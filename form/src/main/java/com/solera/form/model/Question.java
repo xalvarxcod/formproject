@@ -1,20 +1,25 @@
 package com.solera.form.model;
 
-import javax.persistence.*;
-import java.util.ArrayList;
-import java.util.List;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+import lombok.ToString;
 
+import javax.persistence.*;
+
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
+@ToString
 @Entity
 public class Question {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id")
     private Integer id;
     private String question;
-    private String answerChosen;
+    private Integer type;
     private String allPossibleAnswers;
-    @ManyToOne()
-    @JoinColumn(name = "user_id")
-    private User user;
 
     public Integer getId() {
         return id;
@@ -32,14 +37,6 @@ public class Question {
         this.question = question;
     }
 
-    public String getAnswerChosen() {
-        return answerChosen;
-    }
-
-    public void setAnswerChosen(String answerChosen) {
-        this.answerChosen = answerChosen;
-    }
-
     public String getAllPossibleAnswers() {
         return allPossibleAnswers;
     }
@@ -52,11 +49,11 @@ public class Question {
         this.allPossibleAnswers = allPossibleAnswers + newAnswer + ",";
     }
 
-    public User getUser() {
-        return user;
+    public Integer getType() {
+        return type;
     }
 
-    public void setUser(User user) {
-        this.user = user;
+    public void setType(Integer type) {
+        this.type = type;
     }
 }

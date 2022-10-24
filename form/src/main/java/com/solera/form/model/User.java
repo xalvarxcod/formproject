@@ -1,13 +1,25 @@
 package com.solera.form.model;
 
+import jdk.jfr.DataAmount;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+import lombok.ToString;
+import net.bytebuddy.asm.Advice;
+
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
+@ToString
 @Entity
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id")
     private Integer id;
 
     @Column(length = 30, nullable = false)
@@ -16,8 +28,8 @@ public class User {
     @Column(length = 30, nullable = false)
     private String password;
 
-    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
-    List<Question> questions = new ArrayList<>();
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
+    List<Answer> answers = new ArrayList<>();
 
     public Integer getId() {
         return id;
@@ -43,14 +55,14 @@ public class User {
         this.password = password;
     }
 
-    public List<Question> getQuestions() {
-        return questions;
+    public List<Answer> getAnswers() {
+        return answers;
     }
 
-    public void setQuestions(List<Question> questions) {
-        this.questions = questions;
+    public void setAnswers(List<Answer> answers) {
+        this.answers = answers;
     }
-    public void addQuestion(Question newQuestion){
-        questions.add(newQuestion);
+    public void addQuestion(Answer newAnswer){
+        answers.add(newAnswer);
     }
 }
