@@ -1,5 +1,6 @@
 package com.solera.form.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -7,7 +8,7 @@ import lombok.ToString;
 
 import javax.persistence.*;
 
-@Data
+
 @AllArgsConstructor
 @NoArgsConstructor
 @ToString
@@ -17,9 +18,11 @@ public class Answer {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     private Integer id;
+
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "fk_user")
     private User user;
+
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "fk_question",referencedColumnName = "id")
     private Question question;
