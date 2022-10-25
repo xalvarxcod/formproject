@@ -18,7 +18,7 @@ import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
 import HomeIcon from '@mui/icons-material/Home';
 import PersonIcon from '@mui/icons-material/Person';
-import AccountBalanceIcon from '@mui/icons-material/AccountBalance';
+import QuestionAnswerIcon from '@mui/icons-material/QuestionAnswer';
 import ExitToAppIcon from '@mui/icons-material/ExitToApp';
 import { Navigate, useNavigate } from 'react-router-dom';
 
@@ -90,10 +90,6 @@ function LayoutContent(props) {
         navigate("/BankAccounts")
     }
 
-    const handleClickNotifications = () => {
-        navigate("/Notifications")
-    }
-
     const handleClickLogout = () => {
         navigate("/")
     }
@@ -129,11 +125,6 @@ function LayoutContent(props) {
                         >
                             Real World App
                         </Typography>
-                        <IconButton color="inherit">
-                            <Badge badgeContent={4} color="secondary">
-                                <NotificationsIcon />
-                            </Badge>
-                        </IconButton>
                     </Toolbar>
                 </AppBar>
                 <Drawer variant="permanent" open={open}>
@@ -166,16 +157,10 @@ function LayoutContent(props) {
                             </ListItemButton>
                             <ListItemButton onClick={handleClickBankAccounts}>
                                 <ListItemIcon>
-                                    <AccountBalanceIcon />
+                                    <QuestionAnswerIcon />
                                 </ListItemIcon>
-                                <ListItemText primary="Bank Accounts" />
+                                <ListItemText primary="My Responses" />
                             </ListItemButton >
-                            <ListItemButton onClick={handleClickNotifications}>
-                                <ListItemIcon>
-                                    <NotificationsIcon />
-                                </ListItemIcon>
-                                <ListItemText primary="Notifications" />
-                            </ListItemButton>
                             <ListItemButton onClick={handleClickLogout}>
                                 <ListItemIcon>
                                     <ExitToAppIcon />
