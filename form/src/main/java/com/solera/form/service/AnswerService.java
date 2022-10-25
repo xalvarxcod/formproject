@@ -9,8 +9,8 @@ import java.util.Optional;
 public interface AnswerService {
     public Answer saveAnswer(Answer answer);
     public List<Answer> getAllAnswers();
-    Optional<Answer> getAnswer(String id);
-    public void updateAnswer(String id, Answer answer);
-    public void deleteAnswer(String id);
+    Optional<Answer> getAnswer(Integer id);
+    public void updateAnswer(Integer id, Answer answer);
+    public void deleteAnswer(Integer id);
 
 }

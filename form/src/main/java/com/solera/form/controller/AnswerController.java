@@ -16,33 +16,33 @@ public class AnswerController {
     @Autowired
     private AnswerService answerService;
 
-    @PostMapping("/add")
+    @PostMapping()
     public ResponseEntity<String> addAnswer(@RequestBody Answer answer){
         System.out.println("Answer " + answer.toString());
         answerService.saveAnswer(answer);
         return ResponseEntity.status(HttpStatus.OK).body("Answer: " + answer.getAnswer() +" added");
     }
 
-    @GetMapping("/getAll")
+    @GetMapping()
     public List<Answer> getAllAnswers(){
         return answerService.getAllAnswers();
     }
 
-    @GetMapping("/get/{id}")
-    public ResponseEntity<Answer> getAnswer(@PathVariable String id){
+    @GetMapping("{id}")
+    public ResponseEntity<Answer> getAnswer(@PathVariable Integer id){
         Optional<Answer> answer = answerService.getAnswer(id);
         if(answer.isPresent())
             return ResponseEntity.status((HttpStatus.OK)).body(answer.get());
         return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);
     }
 
-    @PutMapping("/update/{id}")
-    public void updateAnswer(@PathVariable String id, @RequestBody Answer answer) {
+    @PutMapping("{id}")
+    public void updateAnswer(@PathVariable Integer id, @RequestBody Answer answer) {
         answerService.updateAnswer(id,answer);
     }
 
-    @DeleteMapping("/delete/{id}")
-    public void deleteQuestion(@PathVariable String id) {
+    @DeleteMapping("{id}")
+    public void deleteQuestion(@PathVariable Integer id) {
         answerService.deleteAnswer(id);
     }
 }

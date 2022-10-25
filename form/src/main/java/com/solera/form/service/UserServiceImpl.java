@@ -23,14 +23,14 @@ public class UserServiceImpl implements UserService {
         return userRepository.findAll();
     }
     @Override
-    public Optional<User> getUser(String id){
+    public Optional<User> getUser(Integer id){
         return userRepository.findById(id);
     }
     @Override
-    public void updateUser(String id, User user) {
+    public void updateUser(Integer id, User user) {
         Optional<User> userOptional = userRepository.findById(id);
         if(userOptional.isEmpty()) {
-            user.setId(Integer.valueOf(id));
+            user.setId(id);
             userRepository.save(user);
         }
         else {
@@ -43,7 +43,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public void deleteUser(String id) {
+    public void deleteUser(Integer id) {
         userRepository.deleteById(id);
     }
 }

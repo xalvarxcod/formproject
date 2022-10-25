@@ -9,7 +9,7 @@ import java.util.Optional;
 public interface QuestionService {
     public Question saveQuestion(Question question);
     public List<Question> getAllQuestions();
-    Optional<Question> getQuestion(String id);
-    public void updateQuestion(String id, Question question);
-    public void deleteQuestion(String id);
+    Optional<Question> getQuestion(Integer id);
+    public void updateQuestion(Integer id, Question question);
+    public void deleteQuestion(Integer id);
 }

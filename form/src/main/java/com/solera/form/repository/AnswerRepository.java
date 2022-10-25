@@ -7,6 +7,6 @@ import org.springframework.stereotype.Repository;
 import java.io.Serializable;
 
 @Repository
-public interface AnswerRepository extends JpaRepository<Answer, Serializable> {
+public interface AnswerRepository extends JpaRepository<Answer, Integer> {
 
 }

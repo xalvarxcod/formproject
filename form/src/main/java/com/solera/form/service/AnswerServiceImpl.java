@@ -24,15 +24,15 @@ public class AnswerServiceImpl implements AnswerService {
     }
 
     @Override
-    public Optional<Answer> getAnswer(String id) {
+    public Optional<Answer> getAnswer(Integer id) {
         return answerRepository.findById(id);
     }
 
     @Override
-    public void updateAnswer(String id, Answer answer) {
+    public void updateAnswer(Integer id, Answer answer) {
         Optional<Answer> answerOptional = answerRepository.findById(id);
         if (answerOptional.isEmpty()) {
-            answer.setId(Integer.valueOf(id));
+            answer.setId(id);
             answerRepository.save(answer);
         } else {
             Answer answerFound = answerOptional.get();
@@ -44,7 +44,7 @@ public class AnswerServiceImpl implements AnswerService {
     }
 
     @Override
-    public void deleteAnswer(String id) {
+    public void deleteAnswer(Integer id) {
         answerRepository.deleteById(id);
     }
 }

@@ -17,32 +17,32 @@ public class UserController {
     @Autowired
     private UserService userService;
 
-    @PostMapping("/add")
+    @PostMapping()
     public ResponseEntity<String> addUser(@RequestBody User user){
         userService.saveUser(user);
         return ResponseEntity.status(HttpStatus.OK).body("User: " + user.getUsername() +" added");
     }
 
-    @GetMapping("/getAll")
+    @GetMapping()
     public List<User> getAllUsers(){
         return userService.getAllUsers();
     }
 
-    @GetMapping("/get/{id}")
-    public ResponseEntity<User> getUser(@PathVariable String id){
+    @GetMapping("{id}")
+    public ResponseEntity<User> getUser(@PathVariable Integer id){
         Optional<User> user = userService.getUser(id);
         if(user.isPresent())
             return ResponseEntity.status((HttpStatus.OK)).body(user.get());
         return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);
     }
 
-    @PutMapping("/update/{id}")
-    public void updateUser(@PathVariable String id, @RequestBody User user) {
+    @PutMapping("{id}")
+    public void updateUser(@PathVariable Integer id, @RequestBody User user) {
         userService.updateUser(id,user);
     }
 
-    @DeleteMapping("/delete/{id}")
-    public void deleteUser(@PathVariable String id) {
+    @DeleteMapping("{id}")
+    public void deleteUser(@PathVariable Integer id) {
         userService.deleteUser(id);
     }
 }

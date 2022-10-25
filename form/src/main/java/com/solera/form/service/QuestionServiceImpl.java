@@ -24,15 +24,15 @@ public class QuestionServiceImpl implements QuestionService{
         return questionRepository.findAll();
     }
     @Override
-    public Optional<Question> getQuestion(String id){
+    public Optional<Question> getQuestion(Integer id){
         return questionRepository.findById(id);
     }
 
     @Override
-    public void updateQuestion(String id, Question question) {
+    public void updateQuestion(Integer id, Question question) {
         Optional<Question> questionOptional = questionRepository.findById(id);
         if (questionOptional.isEmpty()) {
-            question.setId(Integer.valueOf(id));
+            question.setId(id);
             questionRepository.save(question);
         } else {
             Question questionFound = questionOptional.get();
@@ -44,7 +44,7 @@ public class QuestionServiceImpl implements QuestionService{
     }
 
     @Override
-    public void deleteQuestion(String id) {
+    public void deleteQuestion(Integer id) {
         questionRepository.deleteById(id);
     }
 }
