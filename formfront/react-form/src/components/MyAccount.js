@@ -1,33 +1,14 @@
 import * as React from 'react';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
-import Grid from '@mui/material/Grid';
-import Paper from '@mui/material/Paper';
 import Link from '@mui/material/Link';
-import Chart from './Chart';
-import Deposits from './Deposits';
-import Orders from './Orders';
 import Layout from './Layout';
 import { Button, TextField, Box } from '@mui/material';
 import { useState } from 'react';
 import { Avatar } from '@mui/material';
-import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import ManageAccountsIcon from '@mui/icons-material/ManageAccounts';
 import axios from 'axios';
 import { useEffect } from 'react';
-
-function Copyright(props) {
-    return (
-        <Typography variant="body2" color="text.secondary" align="center" {...props}>
-            {'Copyright © '}
-            <Link color="inherit" href="https://mui.com/">
-                Your Website
-            </Link>{' '}
-            {new Date().getFullYear()}
-            {'.'}
-        </Typography>
-    );
-}
 
 function MyAccountContent() {
 
