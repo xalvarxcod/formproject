@@ -9,9 +9,15 @@ import RadioGroup from "@mui/material/RadioGroup";
 import FormControlLabel from "@mui/material/FormControlLabel";
 
 const Question = (props) => {
+    const id = props.questionId;
     const type = props.type;
     const question = props.question;
     const allPossibleAnswers = props.answers.split(",");
+
+    const handleQuestion = (e) => {
+        const answer = {"user": {"id": 1}, "question": {"id": id}, "answer": e};
+        props.setAnswer(answer);
+    }
 
     const layout = () => {
         if (type === 0) {
@@ -22,14 +28,15 @@ const Question = (props) => {
                             aria-labelledby="demo-radio-buttons-group-label"
                             defaultValue="female"
                             name="radio-buttons-group"
+                            onChange={(e) => handleQuestion(e.target.value)}
                         >
                             <FormControlLabel
-                                value={true}
+                                value={"Yes"}
                                 control={<Radio />}
                                 label="Yes"
                             />
                             <FormControlLabel
-                                value={false}
+                                value={"No"}
                                 control={<Radio />}
                                 label="No"
                             />
@@ -48,6 +55,7 @@ const Question = (props) => {
                             marks
                             min={1}
                             max={10}
+                            onChange={(e) => handleQuestion(e.target.value)}
                         />
                     </Box>
                 </>
@@ -60,6 +68,7 @@ const Question = (props) => {
                             aria-labelledby="demo-radio-buttons-group-label"
                             defaultValue="female"
                             name="radio-buttons-group"
+                            onChange={(e) => handleQuestion(e.target.value)}
                         >
                             {allPossibleAnswers.map((answer, i) => {
                                 return (

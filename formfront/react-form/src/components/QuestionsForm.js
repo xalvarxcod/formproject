@@ -1,49 +1,59 @@
 import { useEffect, useState } from "react";
 import Question from "./Question";
-import { Typography, Paper, Grid, Button } from "@mui/material";
+import { Button, Box } from "@mui/material";
 import axios from "../api/axios";
 
 const QuestionsForm = () => {
     const [questions, setQuestions] = useState([]);
     const [currentQuestion, setCurrentQuestion] = useState(0);
+    const [answer, setAnswer] = useState({});
 
     useEffect(() => {
-        axios.get("/question").then((response) => {
-            setQuestions(response.data);
-        }).catch((err) => {})
-    }, [])
+        axios
+            .get("/question")
+            .then((response) => {
+                console.log(response.data);
+                setQuestions(response.data);
+            })
+            .catch((err) => {});
+    }, []);
 
     const changeQuestion = () => {
-        console.log(currentQuestion);
         let value = currentQuestion;
         value++;
         if (value <= questions.length) setCurrentQuestion(value);
+        axios
+            .post("/answer", answer)
+            .then((res) => {
+                console.log(res);
+            })
+            .catch((err) => {});
     };
 
-    return (
-        <>
-            {currentQuestion === questions.length ? (
-                <Grid item xs={12}>
-                    <Paper
-                        sx={{
-                            m: 1,
-                            p: 3,
-                            display: "flex",
-                            flexDirection: "column",
-                        }}
-                    >
-                        <Typography variant="h3" align="center" sx={{ mb: 2 }}><b>Finish Form</b></Typography>
-                        <Button variant="contained">Submit</Button>
-                    </Paper>
-                </Grid>
-            ) : (
-                <>
-                    <Question
-                        question={questions[currentQuestion].question}
-                        type={questions[currentQuestion].type}
-                        answers={questions[currentQuestion].allPossibleAnswers}
-                    />
+    const tryAgain = () => {
+        setCurrentQuestion(0);
+    }
 
+    if (currentQuestion < questions.length) {
+        return (
+            <>
+                <Question
+                    questionId={questions[currentQuestion].id}
+                    question={questions[currentQuestion].question}
+                    type={questions[currentQuestion].type}
+                    answers={questions[currentQuestion].allPossibleAnswers}
+                    setAnswer={setAnswer}
+                />
+
+                {currentQuestion === questions.length - 1 ? (
+                    <Button
+                        sx={{ ml: 1 }}
+                        variant="contained"
+                        onClick={changeQuestion}
+                    >
+                        Finish
+                    </Button>
+                ) : (
                     <Button
                         sx={{ ml: 1 }}
                         variant="contained"
@@ -51,8 +61,18 @@ const QuestionsForm = () => {
                     >
                         Next
                     </Button>
-                </>
-            )}
+                )}
+            </>
+        );
+    }
+    return (
+        <>
+        <Box>
+            <h1>Finished Form</h1>
+            <Button sx={{ ml: 1 }} variant="contained" onClick={tryAgain}>
+                Try Again
+            </Button>
+            </Box>
         </>
     );
 };
