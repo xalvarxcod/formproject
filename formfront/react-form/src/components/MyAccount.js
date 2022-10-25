@@ -1,7 +1,6 @@
 import * as React from 'react';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
-import Link from '@mui/material/Link';
 import Layout from './Layout';
 import { Button, TextField, Box } from '@mui/material';
 import { useState } from 'react';
@@ -14,21 +13,19 @@ function MyAccountContent() {
 
     const [data, setData] = useState(null)
     useEffect(() => {
-        axios.get("http://localhost:8080/dataUser").then((response) => {
+        axios.get("http://localhost:8081/user/" + 1).then((response) => {
             setData(response.data)
         })
     }, [])
 
     const inputStyle = { width: 500 }
 
-    const [firstName, setFirstName] = useState('')
-    const [lastName, setLastName] = useState('')
     const [username, setUsername] = useState('')
-    const [phoneNumber, setPhoneNumber] = useState('')
+    const [password, setPassword] = useState('')
 
     const handleSubmit = (e) => {
         e.preventDefault()
-        const user = {firstName, lastName, username, phoneNumber}
+        const user = {username, password};
     }
 
     return data ? (
@@ -52,31 +49,9 @@ function MyAccountContent() {
                         margin="normal"
                         required
                         fullWidth
-                        id="email"
-                        label="Name"
-                        name="name"
-                        defaultValue={data ? data.firstName:""}
-                        onChange={(e)=>console(e.target.value)}
-                        autoFocus
-                    />
-                    <TextField
-                        margin="normal"
-                        required
-                        fullWidth
-                        id="email"
-                        label="Last Name"
-                        name="lastName"
-                        defaultValue={data ? data.lastName:""}
-                        onChange={(e)=>setLastName(e.target.value)}
-                        autoFocus
-                    />
-                    <TextField
-                        margin="normal"
-                        required
-                        fullWidth
-                        id="email"
-                        label="Email"
-                        name="email"
+                        id="username"
+                        label="Username"
+                        name="username"
                         defaultValue={data ? data.username:""}
                         onChange={(e)=>setUsername(e.target.value)}
                         autoFocus
@@ -85,11 +60,12 @@ function MyAccountContent() {
                         margin="normal"
                         required
                         fullWidth
-                        id="phoneNumber"
-                        label="Phone number"
-                        name="phoneNumber"
-                        defaultValue={data ? data.phoneNumber:""}
-                        onChange={(e)=>setPhoneNumber(e.target.value)}
+                        id="password"
+                        label="Password"
+                        name="password"
+                        type="password"
+                        defaultValue={data ? data.password:""}
+                        onChange={(e)=>setPassword(e.target.value)}
                         autoFocus
                     />
                     <Button

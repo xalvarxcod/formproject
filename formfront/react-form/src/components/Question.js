@@ -31,12 +31,12 @@ const Question = (props) => {
                             onChange={(e) => handleQuestion(e.target.value)}
                         >
                             <FormControlLabel
-                                value={true}
+                                value={"Yes"}
                                 control={<Radio />}
                                 label="Yes"
                             />
                             <FormControlLabel
-                                value={false}
+                                value={"No"}
                                 control={<Radio />}
                                 label="No"
                             />

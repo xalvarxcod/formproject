@@ -9,18 +9,17 @@ import List from '@mui/material/List';
 import Typography from '@mui/material/Typography';
 import Divider from '@mui/material/Divider';
 import IconButton from '@mui/material/IconButton';
-import Badge from '@mui/material/Badge';
 import MenuIcon from '@mui/icons-material/Menu';
 import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
-import NotificationsIcon from '@mui/icons-material/Notifications';
 import ListItemButton from '@mui/material/ListItemButton';
 import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
 import HomeIcon from '@mui/icons-material/Home';
 import PersonIcon from '@mui/icons-material/Person';
 import QuestionAnswerIcon from '@mui/icons-material/QuestionAnswer';
+import CurrencyBitcoinIcon from '@mui/icons-material/CurrencyBitcoin';
 import ExitToAppIcon from '@mui/icons-material/ExitToApp';
-import { Navigate, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 const drawerWidth = 240;
 
@@ -86,8 +85,8 @@ function LayoutContent(props) {
         navigate("/MyAccount")
     }
 
-    const handleClickBankAccounts = () => {
-        navigate("/BankAccounts")
+    const handleClickMyResponses = () => {
+        navigate("/Responses")
     }
 
     const handleClickLogout = () => {
@@ -116,6 +115,7 @@ function LayoutContent(props) {
                         >
                             <MenuIcon />
                         </IconButton>
+                            <CurrencyBitcoinIcon />
                         <Typography
                             component="h1"
                             variant="h6"
@@ -123,7 +123,7 @@ function LayoutContent(props) {
                             noWrap
                             sx={{ flexGrow: 1 }}
                         >
-                            Real World App
+                            Blockchain Form
                         </Typography>
                     </Toolbar>
                 </AppBar>
@@ -155,7 +155,7 @@ function LayoutContent(props) {
                                 </ListItemIcon>
                                 <ListItemText primary="My Account" />
                             </ListItemButton>
-                            <ListItemButton onClick={handleClickBankAccounts}>
+                            <ListItemButton onClick={handleClickMyResponses}>
                                 <ListItemIcon>
                                     <QuestionAnswerIcon />
                                 </ListItemIcon>
