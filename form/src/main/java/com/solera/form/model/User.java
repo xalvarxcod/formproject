@@ -27,8 +27,7 @@ public class User {
     @Column(length = 30, nullable = false)
     private String password;
 
-    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
-    List<Answer> answers = new ArrayList<>();
+
 
     public Integer getId() {
         return id;
@@ -54,14 +53,4 @@ public class User {
         this.password = password;
     }
 
-    public List<Answer> getAnswers() {
-        return answers;
-    }
-
-    public void setAnswers(List<Answer> answers) {
-        this.answers = answers;
-    }
-    public void addQuestion(Answer newAnswer){
-        answers.add(newAnswer);
-    }
 }

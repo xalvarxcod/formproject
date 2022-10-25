@@ -1,6 +1,8 @@
 package com.solera.form.service;
 
+import com.solera.form.model.Answer;
 import com.solera.form.model.User;
+import com.solera.form.repository.AnswerRepository;
 import com.solera.form.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -12,6 +14,8 @@ import java.util.Optional;
 public class UserServiceImpl implements UserService {
     @Autowired
     UserRepository userRepository;
+    @Autowired
+    AnswerRepository answerRepository;
 
     @Override
     public User saveUser(User user) {
@@ -35,7 +39,6 @@ public class UserServiceImpl implements UserService {
         }
         else {
             User userFound = userOptional.get();
-            userFound.setAnswers(user.getAnswers());
             userFound.setPassword(user.getPassword());
             userFound.setUsername(user.getUsername());
             userRepository.save(userFound);
@@ -45,5 +48,10 @@ public class UserServiceImpl implements UserService {
     @Override
     public void deleteUser(Integer id) {
         userRepository.deleteById(id);
+    }
+
+    @Override
+    public List<Answer> getResponsesUser(Integer id) {
+        return answerRepository.findAnswerByUserId(id);
     }
 }

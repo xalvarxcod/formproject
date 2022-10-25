@@ -36,16 +36,16 @@ public class Answer {
         this.id = id;
     }
 
-    public User getUser() {
-        return user;
+    public int getUser() {
+        return user.getId();
     }
 
     public void setUser(User user) {
         this.user = user;
     }
 
-    public Question getQuestion() {
-        return question;
+    public int getQuestion() {
+        return question.getId();
     }
 
     public void setQuestion(Question question) {

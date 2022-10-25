@@ -1,5 +1,6 @@
 package com.solera.form.service;
 
+import com.solera.form.model.Answer;
 import com.solera.form.model.User;
 
 import java.util.List;
@@ -11,4 +12,5 @@ public interface UserService {
     public Optional<User> getUser(Integer id);
     public void updateUser(Integer id,User user);
     public void deleteUser(Integer id);
+    List<Answer> getResponsesUser(Integer id);
 }

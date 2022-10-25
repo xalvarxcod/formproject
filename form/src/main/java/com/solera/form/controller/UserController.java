@@ -1,5 +1,6 @@
 package com.solera.form.controller;
 
+import com.solera.form.model.Answer;
 import com.solera.form.model.User;
 import com.solera.form.service.UserService;
 
@@ -36,6 +37,10 @@ public class UserController {
         return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);
     }
 
+    @GetMapping("{id}/responses")
+    public List<Answer> getUserResponses(@PathVariable Integer id){
+        return userService.getResponsesUser(id);
+    }
     @PutMapping("{id}")
     public void updateUser(@PathVariable Integer id, @RequestBody User user) {
         userService.updateUser(id,user);

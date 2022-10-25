@@ -37,8 +37,8 @@ public class AnswerServiceImpl implements AnswerService {
         } else {
             Answer answerFound = answerOptional.get();
             answerFound.setAnswer(answer.getAnswer());
-            answerFound.setQuestion(answer.getQuestion());
-            answerFound.setUser(answer.getUser());
+//            answerFound.setQuestion(answer.getQuestion());
+//            answerFound.setUser(answer.getUser());
             answerRepository.save(answerFound);
         }
     }
