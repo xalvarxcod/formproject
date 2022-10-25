@@ -27,4 +27,24 @@ public class AnswerServiceImpl implements AnswerService {
     public Optional<Answer> getAnswer(String id) {
         return answerRepository.findById(id);
     }
+
+    @Override
+    public void updateAnswer(String id, Answer answer) {
+        Optional<Answer> answerOptional = answerRepository.findById(id);
+        if (answerOptional.isEmpty()) {
+            answer.setId(Integer.valueOf(id));
+            answerRepository.save(answer);
+        } else {
+            Answer answerFound = answerOptional.get();
+            answerFound.setAnswer(answer.getAnswer());
+            answerFound.setQuestion(answer.getQuestion());
+            answerFound.setUser(answer.getUser());
+            answerRepository.save(answerFound);
+        }
+    }
+
+    @Override
+    public void deleteAnswer(String id) {
+        answerRepository.deleteById(id);
+    }
 }

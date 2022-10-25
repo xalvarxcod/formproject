@@ -9,5 +9,6 @@ public interface UserService {
     public User saveUser(User user);
     public List<User> getAllUsers();
     public Optional<User> getUser(String id);
-    public Optional<User> updateUser(User user);
+    public void updateUser(String id,User user);
+    public void deleteUser(String id);
 }

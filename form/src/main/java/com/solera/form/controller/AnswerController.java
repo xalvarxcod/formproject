@@ -17,7 +17,7 @@ public class AnswerController {
     private AnswerService answerService;
 
     @PostMapping("/add")
-    public ResponseEntity<String> add(@RequestBody Answer answer){
+    public ResponseEntity<String> addAnswer(@RequestBody Answer answer){
         System.out.println("Answer " + answer.toString());
         answerService.saveAnswer(answer);
         return ResponseEntity.status(HttpStatus.OK).body("Answer: " + answer.getAnswer() +" added");
@@ -29,10 +29,20 @@ public class AnswerController {
     }
 
     @GetMapping("/get/{id}")
-    public ResponseEntity<Answer> get(@PathVariable String id){
+    public ResponseEntity<Answer> getAnswer(@PathVariable String id){
         Optional<Answer> answer = answerService.getAnswer(id);
         if(answer.isPresent())
             return ResponseEntity.status((HttpStatus.OK)).body(answer.get());
         return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);
+    }
+
+    @PutMapping("/update/{id}")
+    public void updateAnswer(@PathVariable String id, @RequestBody Answer answer) {
+        answerService.updateAnswer(id,answer);
+    }
+
+    @DeleteMapping("/delete/{id}")
+    public void deleteQuestion(@PathVariable String id) {
+        answerService.deleteAnswer(id);
     }
 }

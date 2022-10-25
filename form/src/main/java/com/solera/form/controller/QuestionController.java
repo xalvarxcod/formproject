@@ -1,7 +1,6 @@
 package com.solera.form.controller;
 
 import com.solera.form.model.Question;
-import com.solera.form.model.User;
 import com.solera.form.service.QuestionService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -18,7 +17,7 @@ public class QuestionController {
     private QuestionService questionService;
 
     @PostMapping("/add")
-    public ResponseEntity<String> add(@RequestBody Question question){
+    public ResponseEntity<String> addQuestion(@RequestBody Question question){
         questionService.saveQuestion(question);
         return ResponseEntity.status(HttpStatus.OK).body("Question: " + question.getQuestion() +" added");
     }
@@ -29,10 +28,20 @@ public class QuestionController {
     }
 
     @GetMapping("/get/{id}")
-    public ResponseEntity<Question> get(@PathVariable String id){
+    public ResponseEntity<Question> getQuestion(@PathVariable String id){
         Optional<Question> question = questionService.getQuestion(id);
         if(question.isPresent())
             return ResponseEntity.status((HttpStatus.OK)).body(question.get());
         return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);
+    }
+
+    @PutMapping("/update/{id}")
+    public void updateQuestion(@PathVariable String id, @RequestBody Question question) {
+        questionService.updateQuestion(id,question);
+    }
+
+    @DeleteMapping("/delete/{id}")
+    public void deleteQuestion(@PathVariable String id) {
+        questionService.deleteQuestion(id);
     }
 }

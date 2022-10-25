@@ -8,7 +8,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import javax.swing.text.html.Option;
 import java.util.List;
 import java.util.Optional;
 
@@ -19,7 +18,7 @@ public class UserController {
     private UserService userService;
 
     @PostMapping("/add")
-    public ResponseEntity<String> add(@RequestBody User user){
+    public ResponseEntity<String> addUser(@RequestBody User user){
         userService.saveUser(user);
         return ResponseEntity.status(HttpStatus.OK).body("User: " + user.getUsername() +" added");
     }
@@ -30,7 +29,7 @@ public class UserController {
     }
 
     @GetMapping("/get/{id}")
-    public ResponseEntity<User> get(@PathVariable String id){
+    public ResponseEntity<User> getUser(@PathVariable String id){
         Optional<User> user = userService.getUser(id);
         if(user.isPresent())
             return ResponseEntity.status((HttpStatus.OK)).body(user.get());
@@ -38,8 +37,12 @@ public class UserController {
     }
 
     @PutMapping("/update/{id}")
-    public ResponseEntity<String> update(@PathVariable String id, @RequestBody User user) {
-        return null;
+    public void updateUser(@PathVariable String id, @RequestBody User user) {
+        userService.updateUser(id,user);
     }
 
+    @DeleteMapping("/delete/{id}")
+    public void deleteUser(@PathVariable String id) {
+        userService.deleteUser(id);
+    }
 }
